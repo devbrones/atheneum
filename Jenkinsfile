@@ -57,7 +57,7 @@ pipeline {
        stage('Deploy 2') {
 	steps {	
 		cd /var/jenkins_home/
-		sh send.sh
+		sh 'sh send.sh'
 		
 	 }
 	}
