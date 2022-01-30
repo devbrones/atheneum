@@ -39,6 +39,8 @@ pipeline {
 		sh 'cp target/x86_64-unknown-linux-musl/release/atheneum sums/'
 		sh 'ls -al'
 		sh 'rm -rf atheneum*'
+		sh 'ls -al'
+		sh 'ls -al ./sums/'
 		sh 'mv sums/atheneum sums/atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
 		sh 'mv sums/atheneum.exe sums/atheneum-$(git rev-parse --short HEAD).exe'
 	}
