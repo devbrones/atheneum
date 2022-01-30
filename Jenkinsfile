@@ -17,7 +17,7 @@ pipeline {
 	  	sh 'rustup target add x86_64-pc-windows-gnu'
 	  	sh 'rustup target add x86_64-unknown-linux-musl'
 		sh 'pwd'
-		sh 'apt-get update -y && apt-get upgrade -y && apt-get install -y mingw-w64'
+		sh 'apt-get update -y && apt-get upgrade -y && apt-get install -y mingw-w64 tree'
             }
         }
       stage('Build') {
@@ -26,6 +26,12 @@ pipeline {
           sh 'cargo build --release --target=x86_64-unknown-linux-musl'
         }
       }
+      stage('Upload') {
+	steps {
+		sh 'tree'
+	}
+	
+	}
       
     }
 }
