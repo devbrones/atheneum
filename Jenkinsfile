@@ -43,6 +43,7 @@ pipeline {
 		sh 'ls -al ./sums/'
 		sh 'mv sums/atheneum sums/atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
 		sh 'mv sums/atheneum.exe sums/atheneum-$(git rev-parse --short HEAD).exe'
+		sh 'ls -al ./sums/'
 	}
 	
 	}
