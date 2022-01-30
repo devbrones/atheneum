@@ -18,7 +18,7 @@ pipeline {
 	  	sh 'rustup target add x86_64-apple-darwin'
 	  	sh 'rustup target add x86_64-unknown-linux-musl'
 		sh 'pwd'
-		sh 'apt-get install -y mingw-w64'
+		sh 'apt-get update -y && apt-get upgrade -y && apt-get install -y mingw-w64'
             }
         }
       stage('Build') {
