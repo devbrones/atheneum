@@ -29,7 +29,7 @@ pipeline {
       }
       stage('Upload') {
 	steps {
-		sh 'tree'
+		sh 'ls -al'
 		sh 'rm -rf sums/'
 		sh 'mkdir sums'
 		sh 'cp target/x86_64-pc-windows-gnu/release/atheneum.exe sums/'
