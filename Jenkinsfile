@@ -18,16 +18,6 @@ pipeline {
           sh 'cargo build'
         }
       }
-      stage('Generate Checksums') {
-          steps{
-            sh 'sha256sum /target/' 
-          }  
-      }
-      stage('Copy latest build') {
-        
-      }
-        
-      
       
     }
 }
