@@ -58,7 +58,7 @@ pipeline {
 	agent {
 		label 'master'
 	}
-		echo '2'
+	steps {	echo '2' }
 	}
 	
       
