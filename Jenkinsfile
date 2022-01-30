@@ -37,12 +37,10 @@ pipeline {
 		sh 'mkdir sums'
 		sh 'cp target/x86_64-pc-windows-gnu/release/atheneum.exe sums/'
 		sh 'cp target/x86_64-unknown-linux-musl/release/atheneum sums/'
-		sh 'cd ./sums/'
-		sh 'pwd'
-		sh 'cd ./sums/'
 		sh 'ls -al'
-		sh 'mv atheneum atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
-		sh 'mv atheneum.exe atheneum-$(git rev-parse --short HEAD).exe'
+		sh 'rm -rf atheneum*'
+		sh 'mv sums/atheneum sums/atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
+		sh 'mv sums/atheneum.exe sums/atheneum-$(git rev-parse --short HEAD).exe'
 	}
 	
 	}
