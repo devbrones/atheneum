@@ -53,13 +53,14 @@ pipeline {
 		sh 'mv sums/atheneum sums/atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
 		sh 'mv sums/atheneum.exe sums/atheneum-$(git rev-parse --short HEAD).exe'
 	}
-	stage('Deploy 2') {
+      }
+       stage('Deploy 2') {
 	agent {
 		label 'master'
 	}
 		echo '2'
 	}
-	}
+	
       
     }
 }
