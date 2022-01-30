@@ -57,8 +57,7 @@ pipeline {
        stage('Deploy 2') {
 	agent { label 'built-in' }
 	steps {	
-		sh 'cd /var/jenkins_home/'
-		sh 'sh send.sh'
+		sh 'sh /var/jenkins_home/send.sh'
 	 }
 	}
 	
