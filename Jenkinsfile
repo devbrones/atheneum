@@ -11,13 +11,14 @@ pipeline {
                 sh 'git clone https://github.com/devbrones/atheneum'
                 sh 'cd atheneum'
                 sh 'cargo version'
+	  	sh 'rustup target add x86_64-pc-windows-gnu'
+	  	sh 'rustup target add x86_64-apple-darwin'
+	  	sh 'rustup target add x86_64-unknown-linux-musl'
+		sh 'uname -a'
             }
         }
       stage('Build') {
         steps {
-	  sh 'rustup target add x86_64-pc-windows-gnu'
-	  sh 'rustup target add x86_64-apple-darwin'
-	  sh 'rustup target add x86_64-unknown-linux-musl'
           sh 'cargo build --release --target=x86_64-pc-windows-gnu'
           sh 'cargo build --release --target=x86_64-apple-darwin'
           sh 'cargo build --release --target=x86_64-unknown-linux-musl'
