@@ -16,6 +16,7 @@ RUN rm -f target/x86_64-apple-darwin/release/deps/atheneum*
 RUN rm -f target/x86_64-unknown-linux-musl/release/deps/atheneum* 
 RUN rm src/*.rs 
 COPY ./src ./src 
+RUN echo 'Environment set up, beginning build process... -- Docker'
 RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=x86_64-pc-windows-gnu --features vendored 
 RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=x86_64-apple-darwin --features vendored 
 RUN RUSTFLAGS=-Clinker=musl-gcc /root/.cargo/bin/cargo build --release --target=x86_64-unknown-linux-musl --features vendored 
