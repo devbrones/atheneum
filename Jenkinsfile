@@ -1,6 +1,9 @@
 pipeline {
     agent {
-        docker { image 'rust:latest' }
+        docker { 
+		image 'rust:latest'
+		args '-u root --privileged'
+		}
     }
     stages {
         stage('Setup') {
