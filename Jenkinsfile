@@ -15,7 +15,6 @@ pipeline {
                 sh 'cd atheneum'
                 sh 'cargo version'
 	  	sh 'rustup target add x86_64-pc-windows-gnu'
-	  	sh 'rustup target add x86_64-apple-darwin'
 	  	sh 'rustup target add x86_64-unknown-linux-musl'
 		sh 'pwd'
 		sh 'apt-get update -y && apt-get upgrade -y && apt-get install -y mingw-w64'
@@ -24,7 +23,6 @@ pipeline {
       stage('Build') {
         steps {
           sh 'cargo build --release --target=x86_64-pc-windows-gnu'
-          sh 'cargo build --release --target=x86_64-apple-darwin'
           sh 'cargo build --release --target=x86_64-unknown-linux-musl'
         }
       }
