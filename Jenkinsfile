@@ -55,9 +55,6 @@ pipeline {
 	}
       }
        stage('Deploy 2') {
-	agent {
-		label 'master'
-	}
 	steps {	echo '2' }
 	}
 	
