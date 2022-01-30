@@ -1,7 +1,9 @@
 FROM rustdocker/rust:nightly as cargo-build 
 RUN apt-get update 
 RUN apt-get install musl-tools -y 
-RUN /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl 
+RUN /root/.cargo/bin/rustup target add x86_64-pc-windows-gnu 
+RUN /root/.cargo/bin/rustup target add x86_64-apple-darwin
+RUN /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl  
 RUN USER=root /root/.cargo/bin/cargo new --bin atheneum 
 WORKDIR /atheneum 
 COPY ./Cargo.toml ./Cargo.toml 
