@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'export CARGO_HOME="${PWD}/.cargo"'
                 sh 'echo $CARGO_HOME'
-                sh 'rm -rf atheneum/'
+                sh 'rm -rf *'
                 sh 'git clone https://github.com/devbrones/atheneum'
                 sh 'cd atheneum'
                 sh 'cargo version'
