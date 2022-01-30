@@ -1,12 +1,13 @@
 pipeline {
-    agent {
-        docker { 
-		image 'rust:latest'
-		args '-u root --privileged'
-		}
-    }
+    agent none
     stages {
         stage('Setup') {
+	    agent {
+		docker { 
+			image 'rust:latest'
+			args '-u root --privileged'
+			}
+	    }
             steps {
                 sh 'export CARGO_HOME="${PWD}/.cargo"'
                 sh 'echo $CARGO_HOME'
@@ -22,6 +23,12 @@ pipeline {
             }
         }
       stage('Build') {
+	    agent {
+		docker { 
+			image 'rust:latest'
+			args '-u root --privileged'
+			}
+	    }
         steps {
           sh 'cargo build --release --target=x86_64-pc-windows-gnu'
           sh 'cargo build --release --target=x86_64-unknown-linux-musl'
@@ -30,22 +37,28 @@ pipeline {
       stage('Test') {
 	steps { echo 'test'  }
 	}
-      stage('Deploy') {
+      stage('Deploy 1') {
+	    agent {
+		docker { 
+			image 'rust:latest'
+			args '-u root --privileged'
+			}
+	    }
 	steps {
-		sh 'ls -al'
 		sh 'rm -rf sums/'
 		sh 'mkdir sums'
 		sh 'cp target/x86_64-pc-windows-gnu/release/atheneum.exe sums/'
 		sh 'cp target/x86_64-unknown-linux-musl/release/atheneum sums/'
-		sh 'ls -al'
 		sh 'rm -rf atheneum*'
-		sh 'ls -al'
-		sh 'ls -al ./sums/'
 		sh 'mv sums/atheneum sums/atheneum-$(git rev-parse --short HEAD)-musl-linux.bin'
 		sh 'mv sums/atheneum.exe sums/atheneum-$(git rev-parse --short HEAD).exe'
-		sh 'ls -al ./sums/'
 	}
-	
+	stage('Deploy 2') {
+	agent {
+		label 'master'
+	}
+		echo '2'
+	}
 	}
       
     }
