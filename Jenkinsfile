@@ -12,7 +12,7 @@ pipeline {
                 sh 'export CARGO_HOME="${PWD}/.cargo"'
                 sh 'echo $CARGO_HOME'
 		sh 'rm -rf atheneum'
-                sh 'git clone https://github.com/devbrones/atheneum'
+                sh 'git clone https://github.com/devbrones/atheneum -b rust'
                 sh 'cd atheneum'
                 sh 'cargo version'
 	  	sh 'rustup target add x86_64-pc-windows-gnu'
